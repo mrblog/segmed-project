@@ -50,13 +50,16 @@ as follows:
 GATSBY_API_URL=http://localhost:5000
 ```
 
+If you ran the REST API on a port other than 5000, change the port to match in
+the setting above.
+
 ##### Start the development server:
 
 ```
 $ gatsby develop
 ```
 
-Open the app in your browser.
+Open the app in your browser. http://localhost:8000/
 
 ![Screenshot](screenshots/login.png)
 
