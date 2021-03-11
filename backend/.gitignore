@@ -1,0 +1,5 @@
+_build
+*.test
+ide.log
+debug-effective-config.json
+config.json

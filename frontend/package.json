@@ -1,0 +1,23 @@
+{
+  "name": "segmed-photo-tagging-project",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Segmed Photo Tagging Project",
+  "author": "david",
+  "keywords": [
+    "gatsby"
+  ],
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^3.0.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  }
+}
