@@ -26,7 +26,7 @@ The default listen port is 5000. It can be changed with config.json or environme
 
 If you change the port on the backend, you must also change the frontend port, as described below.
 
-##### Start the front-end
+#### Start the front-end
 
 In the frontend directory:
 
