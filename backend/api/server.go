@@ -28,6 +28,8 @@ func New(store *diskv.Diskv, logger *zap.Logger) http.Handler {
 	r.HandleFunc("/tag", s.postTag).Methods("POST")
 	r.HandleFunc("/tag/{id}", s.deleteTag).Methods("DELETE")
 
+	r.HandleFunc("/photos", s.getPhotos).Methods("GET")
+
 	paths := make(map[string]bool)
 	r.Walk(func(route *mux.Route, router *mux.Router, ancestors []*mux.Route) error {
 		templ, err := route.GetPathTemplate()

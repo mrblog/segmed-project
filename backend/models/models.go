@@ -1,7 +1,7 @@
 package models
 
 type Photo struct {
-	PhotoId string `json:"photoId"`
+	PhotoId string `json:"id"`
 	Title   string `json:"title"`
 	Url     string `json:"url"`
 }
