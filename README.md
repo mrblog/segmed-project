@@ -70,3 +70,22 @@ When you first connect, you will be prompted for a username. Use the same userna
 Click or tap the "Tag Photo" button to tag a photo.
 
 The app shows a photo title as the metadata.
+
+## Notes
+
+* The request did not stress user account management and therefore, especially with a timeline 
+  of 24-48 hours, I did not include a complete account registration system in the scope. The 
+  scaffolding for such a service is there and could be added.
+  
+* In order to make it very easy to run/reproduce the result, I limit the dependencies.
+Specifically there is no dependency on setting up a full relational database, Mysql or otherwise.
+  Instead, the app uses a simple filesystem based key-store. This could be refactored to use a
+  real database in the repository dependency of the REST API server.
+  
+* The one metadata item on Photos is a title to demonstrate handling of metadata. This could be
+  augmented with any additional metadata of interest.
+  
+
+  
+
+  
