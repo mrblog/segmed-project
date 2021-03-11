@@ -22,6 +22,11 @@ class IndexPage extends React.Component {
       statusMessage: null,
       statusClass: null
     }
+    this.title = "Segmed Photo Tagging Project"
+    this.about = "The task is to build a simple web-app. The webapp should display images as its main feature." +
+        " Think of a simple gallery or a list view. Within the same list view, we'd like to have a" +
+        " \"flag\" or \"tag\" button. This button will cause this image to be \"remembered\" in a DB." +
+        " In other words: if I reload the page again, I'd like this image to remain flagged/tagged."
   }
 
   componentDidMount() {
@@ -78,6 +83,8 @@ class IndexPage extends React.Component {
     })
   }
 
+
+
   render() {
 
     let mainBody
@@ -112,14 +119,9 @@ class IndexPage extends React.Component {
         </form>
       </div>
     }
-    const title = "Segmed Photo Tagging Project"
-    const about = "The task is to build a simple web-app. The webapp should display images as its main feature." +
-        "Think of a simple gallery or a list view. Within the same list view, we'd like to have a" +
-        "flag\" or \"tag\" button. This button will cause this image to be \"remembered\" in a DB." +
-        "In other words: if I reload the page again, I'd like this image to remain flagged/tagged."
     return (<React.Fragment>
-          <Header title="Photo Tagging" about={about}/>
-          <Jumbotron title={title}>
+          <Header title="Photo Tagging" about={this.about}/>
+          <Jumbotron title={this.title}>
             Use this app to tag images of interest
           </Jumbotron>
           <StatusMessage message={this.state.statusMessage} color={this.state.statusClass}/>

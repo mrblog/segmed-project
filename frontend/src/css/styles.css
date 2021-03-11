@@ -6,3 +6,7 @@
   max-width: 400px;
   margin: 20px auto;
 }
+
+button.navbar-toggler:focus {
+  outline: none;
+}

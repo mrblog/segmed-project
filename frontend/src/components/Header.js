@@ -35,7 +35,7 @@ function Header(props) {
                         <strong>{props.title}</strong>
                     </a>
                     <button
-                        className="navbar-toggler"
+                        className="navbar-toggler shadow-none"
                         type="button"
                         data-toggle="collapse"
                         data-target="#navbarHeader"
