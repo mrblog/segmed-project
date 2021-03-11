@@ -2,7 +2,7 @@ import React from "react"
 import Header from "../components/Header"
 import Jumbotron from "../components/Jumbotron"
 import Photos from "../components/Photos"
-import { getAuthToken, handleLogin, isLoggedIn } from "../services/auth"
+import { getAuthToken, handleLogin, isLoggedIn, logout } from "../services/auth"
 import StatusMessage from "../components/StatusMessage";
 
 import "../css/styles.css"
@@ -83,6 +83,18 @@ class IndexPage extends React.Component {
     })
   }
 
+  logoutAction = (e) => {
+    e.preventDefault()
+    logout(() => {
+      this.setState({
+        tags: {},
+        photos: [],
+        username: "",
+        statusMessage: null,
+        statusClass: null
+      })
+    })
+  }
 
 
   render() {
@@ -95,7 +107,11 @@ class IndexPage extends React.Component {
         <form onSubmit={(e) => {
           e.preventDefault()
           handleLogin(this.state.username).then(user => {
-            this.loadTags()
+            this.setState({
+              statusMessage: null,
+              statusClass: null
+            })
+            this.loadPhotos()
           }).catch(err => {
             this.setState({
               statusMessage: err.message,
@@ -120,7 +136,7 @@ class IndexPage extends React.Component {
       </div>
     }
     return (<React.Fragment>
-          <Header title="Photo Tagging" about={this.about}/>
+          <Header title="Photo Tagging" about={this.about} logout={this.logoutAction} isLoggedIn={isLoggedIn()} />
           <Jumbotron title={this.title}>
             Use this app to tag images of interest
           </Jumbotron>

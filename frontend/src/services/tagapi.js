@@ -11,7 +11,7 @@ const dataError = (data) => {
         console.log(data.errorMessage)
         message = data.errorMessage
     }
-    return message + " (" + data.errorCode + ")"
+    return message
 }
 
 export const loginUser = (username) => {

@@ -21,6 +21,15 @@ function Header(props) {
                                     >
                                 </li>
                             </ul>
+
+
+                            {props.isLoggedIn && <ul className="list-unstyled">
+                                 <li>
+                                    <button type="button" className="btn btn-light" onClick={props.logout}>
+                                        Logout
+                                    </button>
+                                </li>
+                            </ul>}
                         </div>
                     </div>
                 </div>
