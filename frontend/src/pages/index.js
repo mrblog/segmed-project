@@ -2,6 +2,7 @@ import React from "react"
 import Header from "../components/Header"
 import Jumbotron from "../components/Jumbotron"
 import Photos from "../components/Photos"
+import Login from "../components/Login"
 import { getAuthToken, handleLogin, isLoggedIn, logout } from "../services/auth"
 import StatusMessage from "../components/StatusMessage";
 
@@ -36,10 +37,19 @@ class IndexPage extends React.Component {
 
   }
 
+  errMessage = (msg, style) => {
+    this.setState({
+      statusMessage: msg,
+      statusClass: style
+    })
+  }
+
   loadPhotos = () => {
     api.getPhotos(getAuthToken()).then(photos => {
       this.setState({
-        photos: photos
+        photos: photos,
+        statusMessage: null,
+        statusClass: null
       })
       this.loadTags()
     }).catch(err => {
@@ -96,6 +106,20 @@ class IndexPage extends React.Component {
     })
   }
 
+  loginUser = (username) => {
+    handleLogin(username).then(() => {
+      this.setState({
+        statusMessage: "signed in, loading photos...",
+        statusClass: "success"
+      })
+      this.loadPhotos()
+    }).catch(err => {
+      this.setState({
+        statusMessage: err.message,
+        statusClass: "danger"
+      })
+    })
+  }
 
   render() {
 
@@ -103,37 +127,7 @@ class IndexPage extends React.Component {
     if (isLoggedIn()) {
       mainBody = <Photos photos={this.state.photos} tagPhoto={this.tagPhoto} tags={this.state.tags}/>
     } else {
-      mainBody = <div className="login">
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          handleLogin(this.state.username).then(user => {
-            this.setState({
-              statusMessage: null,
-              statusClass: null
-            })
-            this.loadPhotos()
-          }).catch(err => {
-            this.setState({
-              statusMessage: err.message,
-              statusClass: "danger"
-            })
-          })
-        }}>
-          <div className="form-group">
-            <label htmlFor="inputUsername">Username</label>
-            <input type="username" className="form-control" id="inputUsername" aria-describedby="usernameHelp"
-                   placeholder="Choose username" required onChange={(e) => {
-                     this.setState({
-                       username: e.target.value
-                     })
-            }} value={this.state.username}/>
-            <small id="usernameHelp" className="form-text text-muted">
-              Use any alphanumeric username
-            </small>
-          </div>
-          <button type="submit" className="btn btn-primary">Submit</button>
-        </form>
-      </div>
+      mainBody = <Login errMessage={this.errMessage} loginAction={this.loginUser} />
     }
     return (<React.Fragment>
           <Header title="Photo Tagging" about={this.about} logout={this.logoutAction} isLoggedIn={isLoggedIn()} />
@@ -144,9 +138,6 @@ class IndexPage extends React.Component {
           {mainBody}
         </React.Fragment>
     )
-
-
-
   }
 }
 

@@ -10,3 +10,8 @@
 button.navbar-toggler:focus {
   outline: none;
 }
+
+.alert {
+  max-width: 800px;
+  margin: 20px auto;
+}
